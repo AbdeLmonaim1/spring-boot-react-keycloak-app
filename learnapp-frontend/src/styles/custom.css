@@ -1,0 +1,284 @@
+/* Custom styles for the dashboard - Fixed Color Scheme */
+:root {
+    --primary-color: #4e73df;
+    --primary-light: #e8f1ff;
+    --secondary-color: #6c757d;
+    --success-color: #1cc88a;
+    --success-light: #d1f7e8;
+    --info-color: #36b9cc;
+    --info-light: #d9f7fc;
+    --warning-color: #f6c23e;
+    --warning-light: #fef5e6;
+    --danger-color: #e74a3b;
+    --danger-light: #fde8e6;
+    --light-color: #f8f9fc;
+    --dark-color: #5a5c69;
+    --sidebar-width: 250px;
+    --card-bg: #ffffff;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --border-color: #e2e8f0;
+    --sidebar-bg: linear-gradient(180deg, #4e73df 0%, #224abe 100%);
+}
+
+body {
+    background-color: #f8f9fc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Card hover effects */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.card.hover-shadow:hover,
+.card:hover {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    transform: translateY(-2px);
+}
+
+/* Sidebar styles - Fixed Contrast */
+.sidebar {
+    min-height: 100vh;
+    background: var(--sidebar-bg);
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-link.active {
+    background-color: white !important;
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+/* Header styles */
+.navbar {
+    background-color: white !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Stats card colors */
+.bg-primary-light {
+    background-color: var(--primary-light) !important;
+}
+
+.bg-success-light {
+    background-color: var(--success-light) !important;
+}
+
+.bg-info-light {
+    background-color: var(--info-light) !important;
+}
+
+.bg-warning-light {
+    background-color: var(--warning-light) !important;
+}
+
+.bg-danger-light {
+    background-color: var(--danger-light) !important;
+}
+
+/* Text colors */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-success {
+    color: var(--success-color) !important;
+}
+
+.text-info {
+    color: var(--info-color) !important;
+}
+
+.text-warning {
+    color: var(--warning-color) !important;
+}
+
+.text-danger {
+    color: var(--danger-color) !important;
+}
+
+.text-dark {
+    color: var(--text-primary) !important;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Badge colors */
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.badge.bg-success {
+    background-color: var(--success-color) !important;
+}
+
+.badge.bg-info {
+    background-color: var(--info-color) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--warning-color) !important;
+}
+
+.badge.bg-danger {
+    background-color: var(--danger-color) !important;
+}
+
+.badge.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+    border-color: var(--border-color);
+    background-color: white;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+}
+
+/* Button colors */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #3a56c4;
+    border-color: #3a56c4;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.btn-outline-success {
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+/* Progress bar */
+.progress {
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+}
+
+/* Table styles */
+.table {
+    color: var(--text-primary);
+}
+
+.table thead th {
+    background-color: var(--light-color);
+    border-bottom: 2px solid var(--border-color);
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(78, 115, 223, 0.05);
+}
+
+/* Input group */
+.input-group-text {
+    background-color: var(--light-color);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* Dropdown */
+.dropdown-menu {
+    border-color: var(--border-color);
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+/* Switch/toggle */
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Chart placeholder */
+.chart-placeholder {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    border: 2px dashed var(--border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        z-index: 1000;
+        width: 100% !important;
+        max-width: 300px;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    .navbar .input-group {
+        width: 100% !important;
+        margin-top: 10px;
+    }
+}
