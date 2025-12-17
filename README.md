@@ -20,6 +20,8 @@ The application follows a modern decoupled architecture:
 1.  **Keycloak (Identity Provider)**: Runs in a Docker container on port `8080`. It manages users, roles, and realms.
 2.  **Spring Boot (Resource Server)**: Runs on port `8081`. It exposes protected API endpoints. It validates the JWT (JSON Web Token) sent by the frontend against Keycloak.
 3.  **React (Client)**: Runs on port `5173`. It initiates the login flow with Keycloak to obtain an Access Token, which is then included in the Authorization header of requests sent to the Spring Boot backend.
+   <img width="968" height="658" alt="image" src="https://github.com/user-attachments/assets/d1c55fb6-66cf-489a-a561-badef420ddf8" />
+
 
 **Flow:**
 1.  User accesses the React App.
