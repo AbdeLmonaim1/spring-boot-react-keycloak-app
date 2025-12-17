@@ -169,3 +169,16 @@ useEffect(() => {
     npm run dev
     ```
 4.  **Access the App**: Open your browser at `http://localhost:5173`. You will be redirected to Keycloak for login.
+
+---
+
+## App Screenshots
+
+### Login Page
+![Login Page](path/to/login-screenshot.png)
+
+### Authenticated User Dashboard
+![Dashboard](path/to/dashboard-screenshot.png)
+
+### Keycloak Admin Console
+![Keycloak Admin](path/to/keycloak-admin-screenshot.png)
