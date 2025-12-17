@@ -1,4 +1,4 @@
-/* Custom styles for the dashboard - Fixed Color Scheme */
+/* Custom styles for the dashboard - Fixed Width Issue */
 :root {
     --primary-color: #4e73df;
     --primary-light: #e8f1ff;
@@ -21,28 +21,115 @@
     --sidebar-bg: linear-gradient(180deg, #4e73df 0%, #224abe 100%);
 }
 
+/* Reset body and html for full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #f8f9fc;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: var(--text-primary);
+    overflow-x: hidden;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
+/* Main layout container */
+#root {
+    min-height: 100vh;
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
+/* Fix for flex container */
+.d-flex {
+    min-height: 100vh;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 4px;
+/* Main content area - FIXED WIDTH */
+.main-content-wrapper {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    background-color: #f8f9fc;
+    transition: margin-left 0.3s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
+/* Content area inside main */
+.content-area {
+    padding: 1.5rem 2rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Remove any max-width restrictions */
+.container-fluid {
+    max-width: 100% !important;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.container-fluid > .row {
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+}
+
+/* Ensure cards take full width */
+.card {
+    width: 100%;
+}
+
+/* Fix table width */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Sidebar fixed positioning */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Main content adjustment */
+.main-content {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    background-color: #f8f9fc;
+}
+
+/* Header adjustment */
+.navbar {
+    background-color: white !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem !important;
+    width: 100%;
+}
+
+/* Page content */
+.page-content {
+    padding: 1.5rem 2rem;
+    width: 100%;
+}
+
+/* Ensure rows don't have negative margins that cause overflow */
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row > * {
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
 }
 
 /* Card hover effects */
@@ -50,6 +137,7 @@ body {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
 }
 
 .card.hover-shadow:hover,
@@ -58,14 +146,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Sidebar styles - Fixed Contrast */
-.sidebar {
-    min-height: 100vh;
-    background: var(--sidebar-bg);
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-    color: rgba(255, 255, 255, 0.95) !important;
-}
-
+/* Sidebar styles */
 .sidebar .nav-link {
     color: rgba(255, 255, 255, 0.85) !important;
     transition: all 0.3s;
@@ -80,12 +161,6 @@ body {
     background-color: white !important;
     color: var(--primary-color) !important;
     font-weight: 600;
-}
-
-/* Header styles */
-.navbar {
-    background-color: white !important;
-    border-bottom: 1px solid var(--border-color);
 }
 
 /* Stats card colors */
@@ -138,147 +213,72 @@ body {
     color: var(--text-secondary) !important;
 }
 
-/* Badge colors */
-.badge.bg-primary {
-    background-color: var(--primary-color) !important;
-}
-
-.badge.bg-success {
-    background-color: var(--success-color) !important;
-}
-
-.badge.bg-info {
-    background-color: var(--info-color) !important;
-}
-
-.badge.bg-warning {
-    background-color: var(--warning-color) !important;
-}
-
-.badge.bg-danger {
-    background-color: var(--danger-color) !important;
-}
-
-.badge.bg-secondary {
-    background-color: var(--secondary-color) !important;
-}
-
-/* Form controls */
-.form-control,
-.form-select {
-    border-color: var(--border-color);
-    background-color: white;
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
-}
-
-/* Button colors */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-primary:hover {
-    background-color: #3a56c4;
-    border-color: #3a56c4;
-}
-
-.btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-outline-primary:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-success {
-    background-color: var(--success-color);
-    border-color: var(--success-color);
-}
-
-.btn-outline-success {
-    color: var(--success-color);
-    border-color: var(--success-color);
-}
-
-/* Progress bar */
-.progress {
-    background-color: #e9ecef;
-}
-
-.progress-bar {
-    background-color: var(--primary-color);
-}
-
-/* Table styles */
-.table {
-    color: var(--text-primary);
-}
-
-.table thead th {
-    background-color: var(--light-color);
-    border-bottom: 2px solid var(--border-color);
-    color: var(--dark-color);
-    font-weight: 600;
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(78, 115, 223, 0.05);
-}
-
-/* Input group */
-.input-group-text {
-    background-color: var(--light-color);
-    border-color: var(--border-color);
-    color: var(--text-secondary);
-}
-
-/* Dropdown */
-.dropdown-menu {
-    border-color: var(--border-color);
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-}
-
-.dropdown-item:focus,
-.dropdown-item:hover {
-    background-color: var(--primary-light);
-    color: var(--primary-color);
-}
-
-/* Switch/toggle */
-.form-check-input:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-/* Chart placeholder */
-.chart-placeholder {
-    background-color: var(--light-color);
-    border-radius: 8px;
-    border: 2px dashed var(--border-color);
-}
-
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .sidebar {
-        position: fixed;
-        z-index: 1000;
-        width: 100% !important;
-        max-width: 300px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
     }
 
     .main-content {
         margin-left: 0 !important;
+        width: 100% !important;
     }
 
-    .navbar .input-group {
-        width: 100% !important;
-        margin-top: 10px;
+    .page-content {
+        padding: 1rem;
     }
+
+    .navbar {
+        padding: 1rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    .row > * {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+}
+
+/* Make sure tables are full width */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Form controls full width */
+.form-control,
+.form-select {
+    width: 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }

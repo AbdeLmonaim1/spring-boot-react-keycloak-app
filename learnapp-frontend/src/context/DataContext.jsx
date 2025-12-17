@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { courseService } from '../services/apiService';
 import { courses as staticCourses, stats as staticStats, students as staticStudents } from '../data/sampleData';
+import { useKeycloak } from './KeycloakContext';
 
 const DataContext = createContext();
 
@@ -13,6 +14,7 @@ export const useData = () => {
 };
 
 export const DataProvider = ({ children, useBackend = false }) => {
+    const { authenticated } = useKeycloak();
     const [courses, setCourses] = useState([]);
     const [stats, setStats] = useState(staticStats);
     const [students, setStudents] = useState([]);
@@ -120,11 +122,13 @@ export const DataProvider = ({ children, useBackend = false }) => {
 
     // Initialize data
     useEffect(() => {
-        fetchCourses();
-        if (!useBackend) {
+        if (useBackend && authenticated) {
+            fetchCourses();
+        } else if (!useBackend) {
+            setCourses(staticCourses);
             setStudents(staticStudents);
         }
-    }, [useBackend]);
+    }, [useBackend, authenticated]);
 
     const value = {
         courses,

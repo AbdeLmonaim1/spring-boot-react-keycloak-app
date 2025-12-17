@@ -1,6 +1,14 @@
-import { Bell, Search, Calendar, Menu } from 'lucide-react';
+import { Bell, Search, Calendar, Menu, LogOut, User, Settings as SettingsIcon } from 'lucide-react';
+import { useKeycloak } from '../../context/KeycloakContext';
 
 const Header = () => {
+    const { keycloak, currentUser, logout } = useKeycloak();
+
+    const username = currentUser?.preferred_username || currentUser?.name || "ETUDIANT";
+    const roles = keycloak?.realmAccess?.roles || [];
+    const isAdmin = roles.includes('admin') || roles.includes('ADMIN');
+    const userRole = isAdmin ? 'ADMIN' : 'ETUDIANT';
+
     return (
         <nav className="navbar navbar-light bg-white shadow-sm py-3 px-4">
             <div className="container-fluid p-0">
@@ -19,9 +27,9 @@ const Header = () => {
 
                 <div className="d-flex align-items-center">
                     <div className="input-group me-3 d-none d-lg-flex" style={{ width: '300px' }}>
-            <span className="input-group-text bg-light border-end-0">
-              <Search size={18} className="text-muted" />
-            </span>
+                        <span className="input-group-text bg-light border-end-0">
+                            <Search size={18} className="text-muted" />
+                        </span>
                         <input
                             type="text"
                             className="form-control border-start-0 ps-0 bg-light"
@@ -38,8 +46,8 @@ const Header = () => {
                         >
                             <Bell size={20} className="text-dark" />
                             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white">
-                3
-              </span>
+                                3
+                            </span>
                         </button>
                         <ul className="dropdown-menu dropdown-menu-end p-2 shadow-sm" style={{ minWidth: '280px' }}>
                             <li><h6 className="dropdown-header fw-bold text-dark">Notifications</h6></li>
@@ -74,36 +82,36 @@ const Header = () => {
                         >
                             <div className="rounded-circle border border-primary border-2 me-2" style={{ width: '44px', height: '44px' }}>
                                 <img
-                                    src="https://ui-avatars.com/api/?name=Admin+User&background=4e73df&color=fff&bold=true&size=44"
+                                    src={`https://ui-avatars.com/api/?name=${username}&background=4e73df&color=fff&bold=true&size=44`}
                                     alt="User"
                                     className="rounded-circle w-100 h-100"
                                 />
                             </div>
-                            <div className="d-none d-md-block">
-                                <p className="mb-0 small fw-medium text-dark">Admin User</p>
-                                <small className="text-muted">Administrator</small>
+                            <div className="d-none d-md-block text-start">
+                                <p className="mb-0 small fw-medium text-dark">{username}</p>
+                                <small className="text-muted">{userRole}</small>
                             </div>
                         </button>
                         <ul className="dropdown-menu dropdown-menu-end shadow-sm">
                             <li><a className="dropdown-item d-flex align-items-center" href="#">
                                 <div className="bg-primary-light rounded-circle p-2 me-2">
-                                    <Bell size={16} className="text-primary" />
+                                    <User size={16} className="text-primary" />
                                 </div>
                                 Profile
                             </a></li>
                             <li><a className="dropdown-item d-flex align-items-center" href="#">
                                 <div className="bg-warning-light rounded-circle p-2 me-2">
-                                    <Bell size={16} className="text-warning" />
+                                    <SettingsIcon size={16} className="text-warning" />
                                 </div>
                                 Settings
                             </a></li>
                             <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item d-flex align-items-center text-danger" href="#">
+                            <li><button className="dropdown-item d-flex align-items-center text-danger" onClick={() => logout()}>
                                 <div className="bg-danger-light rounded-circle p-2 me-2">
-                                    <Bell size={16} className="text-danger" />
+                                    <LogOut size={16} className="text-danger" />
                                 </div>
                                 Logout
-                            </a></li>
+                            </button></li>
                         </ul>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom';
+import { useKeycloak } from '../context/KeycloakContext';
 
 const PrivateRoute = ({ children }) => {
-    // In a real app, you would check if user is authenticated
-    const isAuthenticated = true; // For demo purposes
+    const { authenticated } = useKeycloak();
 
-    return isAuthenticated ? children : <Navigate to="/login" />;
+    return authenticated ? children : <Navigate to="/" />;
 };
 
 export default PrivateRoute;

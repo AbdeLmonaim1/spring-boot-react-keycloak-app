@@ -6,13 +6,15 @@ const Layout = () => {
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="main-content flex-grow-1" style={{ marginLeft: '250px' }}>
+            <div className="flex-grow-1" style={{
+                marginLeft: '250px',
+                minHeight: '100vh',
+                backgroundColor: '#f8f9fc'
+            }}>
                 <Header />
-                <main className="container-fluid mt-4 px-4">
-                    <div className="px-lg-4">
-                        <Outlet />
-                    </div>
-                </main>
+                <div className="px-4 py-4">
+                    <Outlet />
+                </div>
             </div>
         </div>
     );

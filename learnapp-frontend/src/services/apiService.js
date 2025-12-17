@@ -1,4 +1,5 @@
 import axios from 'axios';
+import keycloak from '../keycloak';
 
 // Create axios instance with base URL
 const api = axios.create({
@@ -6,6 +7,23 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     }
+});
+
+api.interceptors.request.use(async (config) => {
+    // Ensure we have a token
+    if (keycloak.token) {
+        try {
+            // Attempt to refresh token if needed (validity < 30s)
+            await keycloak.updateToken(30);
+        } catch (error) {
+            console.warn("Token refresh failed, using existing token", error);
+        }
+        // Always attach the token if it exists
+        config.headers.Authorization = `Bearer ${keycloak.token}`;
+    } else {
+        console.warn("No Keycloak token found! Request might fail.");
+    }
+    return config;
 });
 
 // Add response interceptor for error handling
